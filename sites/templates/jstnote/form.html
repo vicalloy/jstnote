@@ -1,0 +1,56 @@
+{% extends "jstnote/base.html" %}
+{% load i18n %}
+
+{% block extra_header %}
+  {{block.super}}
+  <style type="text/css">
+    #container_top {
+      padding-bottom: 20px;
+    }
+    #id_body {
+      width: 44em;
+      height: 24em;
+    }
+    .form-horizontal .control-group > label {
+      width: 80px;
+    }
+    .form-horizontal .controls {
+      margin-left: 100px;
+    }
+  </style>
+{% endblock %}
+
+{% block sidebar %}
+<div class="sidebar">
+  内容、密码为必填字段 
+</div>
+{% endblock %}
+
+{% block container_top %}
+<div id="container_top">
+  <h1> 创建/编辑 </h1>
+</div>
+{% endblock %}
+
+{% block content %}
+  <div class="content">
+    {% if preview %}
+    <div>
+      {% include "jstnote/inc/markup.html" %}
+    </div>
+    <hr/>
+    {% endif %}
+    <form action="" enctype="multipart/form-data" method="post" class="form-horizontal">
+      {% csrf_token %}
+      <fieldset>
+        {{ form.as_div }}
+        <div class="form-actions">
+          <p>
+            <input type="submit" value="保存" class="btn btn-primary" name="submit">
+            <input type="submit" value="预览" class="btn" name="preview">
+          </p>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+{% endblock %}

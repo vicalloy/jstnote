@@ -1,0 +1,53 @@
+{% extends "jstnote/base.html" %}
+{% load i18n %}
+
+{% block extra_header %}
+  {{block.super}}
+  <style type="text/css">
+    #container_top {
+      padding-bottom: 20px;
+    }
+    #id_body {
+      width: 46em;
+      height: 24em;
+    }
+    .form-horizontal .control-group > label {
+      width: 80px;
+    }
+    .form-horizontal .controls {
+      margin-left: 100px;
+    }
+  </style>
+{% endblock %}
+
+{% block sidebar %}
+<div class="sidebar">
+  <div class="well">
+	by vicalloy 
+	on 2012-01-22
+  </div>
+  <div class="well">
+	New<br/>
+	Edit<br/>
+	Del
+  </div>
+</div>
+{% endblock %}
+
+{% block container_top %}
+  {% if paster.title %}
+	<div id="container_top">
+	  <h1> {{paster.title}} </h1>
+	</div>
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+  <div class="content">
+    <div>
+      {% with paster_markup=paster.markup paster_body=paster.body %}
+        {% include "jstnote/inc/markup.html" %}
+      {% endwith %}
+    </div>
+  </div>
+{% endblock %}

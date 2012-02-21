@@ -1,0 +1,12 @@
+{% load markup %}
+{% if paster_markup == 'rst' %}
+    {{paster_body|restructuredtext}}
+{% else %} {% if paster_markup == 'md' %}
+    {{paster_body|markdown}}
+{% else %} {% if paster_markup == 'textile' %}
+    {{paster_body|textile}}
+{% else %} {% if paster_markup == 'html' %}
+    {{paster_body|safe}}
+{% else %}
+    {{paster_body|linebreaks}}
+{% endif %} {% endif %} {% endif %} {% endif %}
