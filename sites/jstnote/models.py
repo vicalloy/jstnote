@@ -29,6 +29,6 @@ class Paster(models.Model):
         return self.title
 
     def get_created_by(self):
-        if self.created_by:
-            return self.created_by
+        if self.username:
+            return self.username
         return u'匿名'
