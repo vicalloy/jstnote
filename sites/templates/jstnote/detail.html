@@ -30,7 +30,8 @@
   <div class="">
 		<a href="#" id="id_edit">编辑</a>
 		<a href="#" id="id_del">删除</a>
-    <form id="id_admin_form" action="" style="display: none" >
+    <form id="id_admin_form" method="post" action="" style="display: none" >
+      {% csrf_token %}
       <input type="hidden" name="act">
       <input type="password" id="id_pwd" name="pwd" placeholder="密码">
       <button class="btn" type="submit" id="id_submit" name="submit"> 确认 </button>
@@ -40,9 +41,6 @@
 {% endblock %}
 
 {% block container_top %}
-  <div class="alert alert-info">
-     密码不正确，删除失败
-  </div>
   {% if paster.title %}
 	<div id="container_top">
 	  <h1> {{paster.title}} </h1>

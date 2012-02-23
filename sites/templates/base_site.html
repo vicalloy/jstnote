@@ -38,12 +38,12 @@
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container-fluid">
-          <a class="brand" href="/">碎片</a>
+          <a class="brand" href="{% url note_idx %}">碎片</a>
           <form action="" class="navbar-search pull-left">
             <input type="text" placeholder="Search">
           </form>
           <ul class="nav">
-            <li><a href="#">发布内容</a></li>
+						<li><a href="{% url note_idx %}">发布内容</a></li>
             <li><a href="#">最新动态</a></li>
             <li><a href="#">标签云</a></li>
             <li><a href="#contact">随便看看</a></li>
@@ -58,11 +58,13 @@
 
   {% block container %}
     <div class="container-fluid">
+			{% if messages %}
       <div class="alert alert-info">
         {% for message in messages %}
           {{message|safe}}
         {% endfor %}
       </div>
+			{% endif %}
       {% block container_top %}
       {% endblock %}
 

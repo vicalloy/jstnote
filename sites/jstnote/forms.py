@@ -10,7 +10,7 @@ class PasterForm(BootstrapModelForm):
 
     def clean_admin_pwd(self):
         admin_pwd = self.cleaned_data['admin_pwd']
-        if self.instance.pk and instance.admin_pwd != admin_pwd:#edit
+        if self.instance.pk and self.instance.admin_pwd != admin_pwd:#edit
             raise forms.ValidationError(u"您输入的编辑密码不正确")
         return admin_pwd
 

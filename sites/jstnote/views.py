@@ -39,21 +39,29 @@ def detail(request, pk):
     return render(request, template_name, ctx)
 
 def edit(request, pk):
+    ctx = {}
     template_name = 'jstnote/form.html'
     paster = get_object_or_404(Paster, pk=pk)
-    form = TodoForm(instance=paster)
+    ctx['paster'] = paster
+    form = PasterForm(instance=paster)
+    preview = request.POST.get('preview', '')
     if request.method == "POST":
+        ctx['paster_body'] = request.POST.get('body', '')
+        ctx['paster_markup'] = request.POST.get('markup', '')
         form = PasterForm(request.POST, instance=paster)
-        if form.is_valid():
+        if form.is_valid() and request.POST.get('submit', ''):
             form.save()
             messages.info(request, u'密码不正确，删除失败')
             return HttpResponseRedirect(reverse("note_detail", args=[paster.pk]))
-    return render(request, template_name, {'form': form})
+    ctx['form'] = form
+    ctx['preview'] = preview
+    return render(request, template_name, ctx)
 
 def to_edit(request, pk):
     paster = get_object_or_404(Paster, pk=pk)
     if request.POST.get('pwd', '') == paster.admin_pwd:
         return HttpResponseRedirect(reverse("note_edit", args=[paster.pk]))
+    messages.info(request, u'密码不正确，无法编辑')
     return HttpResponseRedirect(reverse("note_detail", args=[paster.pk]))
 
 def delete(request, pk):
