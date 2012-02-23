@@ -18,8 +18,8 @@ class Paster(models.Model):
     num_replies = models.PositiveSmallIntegerField(u'回复数', default=0)#posts...
 
     title = models.CharField(u'标题', max_length=30, blank=True)
-    username = models.CharField(u'用户名/E-Mail', max_length=30, blank=True)
-    admin_pwd = models.CharField(u'密码', max_length=30, help_text=u'日后编辑该文件时，所需使用的密码')
+    username = models.CharField(u'用户名/E-Mail', max_length=30, blank=True, help_text=u'文本显示的作者名称，无需要注册')
+    admin_pwd = models.CharField(u'密码', max_length=30, help_text=u'日后编辑该文件所需使用的密码。该密码为认领文本的唯一凭证')
 
     created_by = models.ForeignKey(User, blank=True, null=True)
     created_on = models.DateTimeField(auto_now_add = True)
@@ -27,3 +27,8 @@ class Paster(models.Model):
     
     def __unicode__(self):
         return self.title
+
+    def get_created_by(self):
+        if self.created_by:
+            return self.created_by
+        return u'匿名'

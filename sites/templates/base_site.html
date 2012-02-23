@@ -58,6 +58,11 @@
 
   {% block container %}
     <div class="container-fluid">
+      <div class="alert alert-info">
+        {% for message in messages %}
+          {{message|safe}}
+        {% endfor %}
+      </div>
       {% block container_top %}
       {% endblock %}
 

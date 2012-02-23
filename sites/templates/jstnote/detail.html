@@ -22,19 +22,27 @@
 
 {% block sidebar %}
 <div class="sidebar">
-  <div class="well">
-	by vicalloy 
-	on 2012-01-22
-  </div>
-  <div class="well">
-	New<br/>
-	Edit<br/>
-	Del
+	<div class="well">
+		by {{paster.get_created_by}}
+		<br/>
+		on {{paster.created_on|date:"Y-m-d H:i" }}
+	</div>
+  <div class="">
+		<a href="#" id="id_edit">编辑</a>
+		<a href="#" id="id_del">删除</a>
+    <form id="id_admin_form" action="" style="display: none" >
+      <input type="hidden" name="act">
+      <input type="password" id="id_pwd" name="pwd" placeholder="密码">
+      <button class="btn" type="submit" id="id_submit" name="submit"> 确认 </button>
+    </form>
   </div>
 </div>
 {% endblock %}
 
 {% block container_top %}
+  <div class="alert alert-info">
+     密码不正确，删除失败
+  </div>
   {% if paster.title %}
 	<div id="container_top">
 	  <h1> {{paster.title}} </h1>
@@ -50,4 +58,27 @@
       {% endwith %}
     </div>
   </div>
+{% endblock %}
+
+{% block footer_ext %} 
+  {{block.super}}
+  <script>
+    var url_del = "{% url note_delete paster.pk %}";
+    var url_to_edit = "{% url note_to_edit paster.pk %}";
+    $(function(){
+      $('#id_edit').click(function(){
+        $('#id_admin_form').toggle();
+        $('#id_admin_form').attr('action', url_to_edit);
+        $('#id_submit').text('确认编辑');
+        return false;
+      });
+      $('#id_del').click(function(){
+        $('#id_admin_form').toggle();
+        $('#id_admin_form').attr('action', url_del);
+        $('#id_submit').text('确认删除');
+        return false;
+      });
+    });
+  </script>
+
 {% endblock %}
