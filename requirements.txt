@@ -6,4 +6,7 @@ django-debug-toolbar
 textile
 docutils
 Markdown
+django-taggit
+django-taggit-templatetags
+django-pagination
 git+git://github.com/earle/django-bootstrap.git
