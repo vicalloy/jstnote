@@ -39,7 +39,7 @@
   margin-left: 100px;
 }
 .pasters .paster {
-  border-bottom: 1px solid #DDDDDD;
+  border-bottom: 1px dashed #DDDDDD;
   padding-bottom: 1em;
   margin-bottom: 1em;
 }

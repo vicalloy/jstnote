@@ -7,9 +7,9 @@ from taggit.managers import TaggableManager
 
 markup_choices = (
         ('txt', _(u'Text')),
-        ('textile', _(u'Textile')),
         ('html', _(u'Html')),
         ('md', _(u'Markdown')),
+        ('textile', _(u'Textile')),
         ('rst', _(u'reStructuredText')),
         )
 
