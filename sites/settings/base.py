@@ -102,6 +102,17 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    'pagination.middleware.PaginationMiddleware',
+)
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+        "django.contrib.auth.context_processors.auth",
+        "django.core.context_processors.debug",
+        "django.core.context_processors.i18n",
+        "django.core.context_processors.media",
+        "django.core.context_processors.static",
+        "django.core.context_processors.request",
+        "django.contrib.messages.context_processors.messages",
 )
 
 ROOT_URLCONF = 'urls'
@@ -129,6 +140,9 @@ INSTALLED_APPS = (
      'dj_scaffold',
      'south',
      'bootstrap',
+     'taggit',
+     'taggit_templatetags',
+     'pagination',
 
      'jstnote',
 )

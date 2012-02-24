@@ -4,32 +4,6 @@
 
 {% block extra_header %}
   <style type="text/css">
-    .navbar {
-      position: static;
-      margin-bottom: 20px;
-    }
-    .container-fluid {
-      margin-left: auto;
-      margin-right: auto;
-      width: 940px;
-      padding-left: 10px;
-      padding-right: 10px;
-    }
-    .container-fluid > .sidebar {
-      float: right;
-      left: 20px;
-      position: static;
-      top: 0;
-      width: 220px;
-    }
-    .container-fluid > .content {
-      margin-right: 240px;
-      margin-left: 0px;
-    }
-    .form-actions {
-      background: none;
-      border-top: none;
-    }
   </style>
 {% endblock %}
 
@@ -44,8 +18,8 @@
           </form>
           <ul class="nav">
 						<li><a href="{% url note_idx %}">发布内容</a></li>
-            <li><a href="#">最新动态</a></li>
-            <li><a href="#">标签云</a></li>
+            <li><a href="{% url note_last %}">最新发布</a></li>
+            <li><a href="{% url note_tags %}">标签云</a></li>
             <li><a href="#contact">随便看看</a></li>
           </ul>
           <ul class="nav pull-right">

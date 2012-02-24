@@ -9,6 +9,8 @@ from django.core.urlresolvers import reverse
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib import messages
 
+from taggit.models import Tag
+
 from jstnote.forms import PasterForm
 from jstnote.models import Paster
 
@@ -72,3 +74,19 @@ def delete(request, pk):
         return HttpResponseRedirect(reverse("note_idx"))
     messages.info(request, u'密码不正确，删除失败')
     return HttpResponseRedirect(reverse("note_detail", args=[paster.pk]))
+
+def pasters(request, tag_name=''):
+    template_name = 'jstnote/pasters.html'
+    ctx = {}
+    if tag_name:
+        ctx['tag'] = get_object_or_404(Tag, name=tag_name)
+        pasters = Paster.objects.filter(tags__name__in=[tag_name])
+    else:
+        pasters = Paster.objects.all()
+    pasters = pasters.order_by('-created_on')
+    ctx['pasters'] = pasters
+    return render(request, template_name, ctx)
+
+def tags(request):
+    template_name = 'jstnote/tags.html'
+    return render(request, template_name)

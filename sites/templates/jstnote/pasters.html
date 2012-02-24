@@ -1,0 +1,60 @@
+{% extends "jstnote/base.html" %}
+{% load i18n %}
+
+{% block extra_header %}
+  {{block.super}}
+  <style type="text/css">
+    .pasters .paster {
+      border-bottom: 1px solid #DDDDDD;
+      padding-bottom: 1em;
+      margin-bottom: 1em;
+    }
+    .p-info {
+      color: gray;
+      padding-bottom: 4px;
+    }
+    .p-info span {
+      font-weight: bold;
+    }
+  </style>
+{% endblock %}
+
+{% block sidebar %}
+<div class="sidebar">
+  <div>
+    碎片网是一个文本分享工具。你可以在这里分享任何东西。
+  </div>
+</div>
+{% endblock %}
+
+{% block container_top %}
+  <div id="container_top">
+    <h1> 
+      {% if tag%}
+      Tag: {{tag}} 
+      {% else %}
+      最新碎片
+      {% endif %}
+     </h1>
+  </div>
+{% endblock %}
+
+{% block content %}
+  {% load pagination_tags %}
+  {% autopaginate pasters 1 %}
+  <div class="content">
+    <div class="pasters">
+      {% for p in pasters %}
+        <div class="paster">
+          <div class="p-info">
+            by <span>{{p.get_created_by}}</span> |
+            on <a href="{% url note_detail p.pk %}">{{p.created_on|date:"Y-m-d H:i" }}</a> |
+            <a href="{% url note_detail p.pk %}"> <span class="icon-arrow-right"/></a>
+          </div>
+          {{ p.body|slice:"140" }}{% if p.body|length > 140 %}...{% endif %} 
+        </div>
+      {% endfor %}
+      {% paginate %}
+    </div>
+  </div>
+{% endblock %}
