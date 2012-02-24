@@ -2,6 +2,8 @@
 {% load i18n %}
 {% load comments %}
 
+{% block title %} {{ paster.body|slice:"60" }}{% if paster.body|length > 140 %}...{% endif %} {% endblock %}
+
 {% block extra_header %}
   {{block.super}}
   <style type="text/css">
@@ -16,14 +18,20 @@
 
 {% block sidebar %}
 <div class="sidebar">
-	<div class="well">
-		by {{paster.get_created_by}}
-		<br/>
-		on {{paster.created_on|date:"Y-m-d H:i" }}
-	</div>
+  <div id="ckepop" style="padding-bottom: 30px">
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt" target="_blank"><img src="http://v2.jiathis.com/code_mini/images/btn/v1/jiathis1.gif" border="0" /></a>
+    <a class="jiathis_counter_style_margin:3px 0 0 2px"></a>
+  </div>
+
+  <div class="well">
+    by {{paster.get_created_by}}
+    <br/>
+    on {{paster.created_on|date:"Y-m-d H:i" }}
+  </div>
+
   <div class="">
-		<a href="#" id="id_edit">编辑</a>
-		<a href="#" id="id_del">删除</a>
+    <a href="#" id="id_edit">编辑</a>
+    <a href="#" id="id_del">删除</a>
     <form id="id_admin_form" method="post" action="" style="display: none" >
       {% csrf_token %}
       <input type="hidden" name="act">
@@ -72,6 +80,7 @@
 
 {% block footer_ext %} 
   {{block.super}}
+  <script type="text/javascript" src="http://v2.jiathis.com/code_mini/jia.js" charset="utf-8"></script>
   <script>
     var url_del = "{% url note_delete paster.pk %}";
     var url_to_edit = "{% url note_to_edit paster.pk %}";
@@ -127,5 +136,4 @@
       return false;
     });
   </script>
-  <script type="text/javascript" src="http://v2.jiathis.com/code/jiathis_r.js?move=0&amp;btn=r2.gif" charset="utf-8"></script>
 {% endblock %}

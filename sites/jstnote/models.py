@@ -16,7 +16,7 @@ markup_choices = (
 class Paster(models.Model):
     markup = models.CharField(u"格式", max_length=10, default='txt', choices=markup_choices)
     body = models.TextField(u'内容')
-    tags = TaggableManager()
+    tags = TaggableManager(blank=True)
 
     title = models.CharField(u'标题', max_length=30, blank=True)
     username = models.CharField(u'用户名/E-Mail', max_length=30, blank=True, help_text=u'文本显示的作者名称，无需要注册')
