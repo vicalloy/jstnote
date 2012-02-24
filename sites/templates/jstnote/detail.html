@@ -4,6 +4,12 @@
 {% block extra_header %}
   {{block.super}}
   <style type="text/css">
+    .comment {
+      padding: 6px 0px;
+    }
+    .comment_form {
+      padding: 6px 0;
+    }
   </style>
 {% endblock %}
 
@@ -41,6 +47,36 @@
       {% with paster_markup=paster.markup paster_body=paster.body %}
         {% include "jstnote/inc/markup.html" %}
       {% endwith %}
+    </div>
+    <hr/>
+    <div class="comments">
+      <h3>评论</h3>
+      <div class="comment">
+          <div class="p-info">
+            by <span>vicalloy</span> |
+            on <a href="#">2012</a>
+          </div>
+          some....
+      </div>
+      <div class="comment">
+          <div class="p-info">
+            by <span>vicalloy</span> |
+            on <a href="#">2012</a>
+          </div>
+          LAMP 当中最是雷打不动的 Apache 更新了！这个已经用了六年的网页服务器现在也终于跳号到 2.4 版了。虽说前版的 Apache 一直以来都运作的相当稳定，但说真的，这次的更新还能带来更好执行效率，这样应该也不会有人持反对意见吧？这个在 90 年代时便已达到十分惊人市占率的网页服务器，在这次的更新中带来了许多修正，包括效能的增进以及对高流量网站的缓冲效能做了若干调整。准备架设或更新自己的网站吗？快透过引用来源观看更多新版 Apache 所带来的详细更新内容吧。
+      </div>
+    </div>
+    <div class="comment_form">
+      <h3>发表评论</h3>
+      <form action="" method="post" class="">
+        <div class="control-group">
+          <label class="control-label">内容</label>
+          <div class="controls">
+            <textarea name="body" cols="40" rows="10" id="id_body"></textarea>
+            <p class="help-block"></p>
+          </div>
+        </div>
+      </form>
     </div>
   </div>
 {% endblock %}

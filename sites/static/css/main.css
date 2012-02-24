@@ -38,3 +38,15 @@
 .form-horizontal .controls {
   margin-left: 100px;
 }
+.pasters .paster {
+  border-bottom: 1px solid #DDDDDD;
+  padding-bottom: 1em;
+  margin-bottom: 1em;
+}
+.p-info {
+  color: gray;
+  padding-bottom: 4px;
+}
+.p-info span {
+  font-weight: bold;
+}

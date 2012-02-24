@@ -4,18 +4,6 @@
 {% block extra_header %}
   {{block.super}}
   <style type="text/css">
-    .pasters .paster {
-      border-bottom: 1px solid #DDDDDD;
-      padding-bottom: 1em;
-      margin-bottom: 1em;
-    }
-    .p-info {
-      color: gray;
-      padding-bottom: 4px;
-    }
-    .p-info span {
-      font-weight: bold;
-    }
   </style>
 {% endblock %}
 
@@ -41,7 +29,7 @@
 
 {% block content %}
   {% load pagination_tags %}
-  {% autopaginate pasters 1 %}
+  {% autopaginate pasters %}
   <div class="content">
     <div class="pasters">
       {% for p in pasters %}
