@@ -1,5 +1,6 @@
 {% extends "jstnote/base.html" %}
 {% load i18n %}
+{% load comments %}
 
 {% block extra_header %}
   {{block.super}}
@@ -51,32 +52,20 @@
     <hr/>
     <div class="comments">
       <h3>评论</h3>
-      <div class="comment">
+      {% get_comment_list for paster as comment_list %}
+      {% for c in comment_list %}
+      <div class="comment" id="c{{ c.id }}">
           <div class="p-info">
-            by <span>vicalloy</span> |
-            on <a href="#">2012</a>
+            by <span>{{ c.user_name }}</span> |
+            on {{ c.submit_date|date:"Y-m-d H:i" }}
           </div>
-          some....
+          {{ c.comment|linebreaks }}
       </div>
-      <div class="comment">
-          <div class="p-info">
-            by <span>vicalloy</span> |
-            on <a href="#">2012</a>
-          </div>
-          LAMP 当中最是雷打不动的 Apache 更新了！这个已经用了六年的网页服务器现在也终于跳号到 2.4 版了。虽说前版的 Apache 一直以来都运作的相当稳定，但说真的，这次的更新还能带来更好执行效率，这样应该也不会有人持反对意见吧？这个在 90 年代时便已达到十分惊人市占率的网页服务器，在这次的更新中带来了许多修正，包括效能的增进以及对高流量网站的缓冲效能做了若干调整。准备架设或更新自己的网站吗？快透过引用来源观看更多新版 Apache 所带来的详细更新内容吧。
-      </div>
+      {% endfor %}
     </div>
     <div class="comment_form">
       <h3>发表评论</h3>
-      <form action="" method="post" class="">
-        <div class="control-group">
-          <label class="control-label">内容</label>
-          <div class="controls">
-            <textarea name="body" cols="40" rows="10" id="id_body"></textarea>
-            <p class="help-block"></p>
-          </div>
-        </div>
-      </form>
+      {% render_comment_form for paster %}
     </div>
   </div>
 {% endblock %}
@@ -100,6 +89,39 @@
         return false;
       });
     });
+    function _checkField(o) {
+      if (o.val() == '') {
+        o.parent().append('<span class="errorlist">该字段必填</span>');
+        return false;
+      }
+      return true;
+    }
+    function _checkEmail(o)  {  
+      if (isEmail(o.val())) {
+        return true;
+      }
+      o.parent().append('<span class="errorlist">不是合法的邮件地址</span>');
+      return false;
+    }
+    function _isURL(o) {
+      var s = o.val()
+      if (s == '') {
+        return true;
+      }
+      if (isURL(s)) {
+        return true;
+      } 
+      o.parent().append('<span class="errorlist">不是合法的网址</span>');
+      return false;
+    }
+    $('.comment_form form').submit(function(){
+      $('.comment_form form .errorlist').remove();
+      var ret = _checkField($('#id_name')) & _checkField($('#id_email')) & _checkField($('#id_comment'));
+      if (ret > 0) {
+        ret = _checkEmail($('#id_email')) & _isURL($('#id_url'));
+        return ret > 0;
+      }
+      return false;
+    });
   </script>
-
 {% endblock %}

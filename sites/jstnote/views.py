@@ -38,6 +38,7 @@ def detail(request, pk):
     paster = get_object_or_404(Paster, pk=pk)
     ctx = {}
     ctx['paster'] = paster
+    ctx['next'] = reverse("note_detail", args=[paster.pk])
     return render(request, template_name, ctx)
 
 def edit(request, pk):

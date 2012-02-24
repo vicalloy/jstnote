@@ -28,7 +28,7 @@
 #container_top {
   padding-bottom: 20px;
 }
-#id_body {
+#id_body, #id_comment {
   width: 46em;
   height: 24em;
 }
@@ -49,4 +49,7 @@
 }
 .p-info span {
   font-weight: bold;
+}
+.errorlist {
+  color: #B94A48;
 }

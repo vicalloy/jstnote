@@ -17,6 +17,7 @@ urlpatterns = patterns('',
     # Examples:
     #url('^$', 'demoapp.views.index', name='idx'),
     url(r'^', include('jstnote.urls')),
+    (r'^comments/', include('django.contrib.comments.urls')),
 )
 
 if settings.DEBUG:
