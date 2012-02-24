@@ -119,8 +119,11 @@
       var ret = _checkField($('#id_name')) & _checkField($('#id_email')) & _checkField($('#id_comment'));
       if (ret > 0) {
         ret = _checkEmail($('#id_email')) & _isURL($('#id_url'));
-        return ret > 0;
+        if (ret > 0) {
+          return true;
+        };
       }
+      alert('您填写的信息不完整，请修正后重新提交');
       return false;
     });
   </script>
