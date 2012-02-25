@@ -53,3 +53,6 @@
 .errorlist {
   color: #B94A48;
 }
+#site_intro span {
+  font-weight: bold;
+}
