@@ -17,13 +17,13 @@
             <input type="text" placeholder="Search">
           </form>
           <ul class="nav">
-						<li><a href="{% url note_idx %}">发布内容</a></li>
+            <li><a href="{% url note_idx %}">发布内容</a></li>
             <li><a href="{% url note_last %}">最新发布</a></li>
             <li><a href="{% url note_tags %}">标签云</a></li>
-            <li><a href="#contact">随便看看</a></li>
+            <!-- <li><a href="#contact">随便看看</a></li> -->
           </ul>
           <ul class="nav pull-right">
-              <li><a href="#"><span>Help</span></a></li>
+            <li><a href="#"><span>Help</span></a></li>
           </ul>
         </div>
       </div>
@@ -32,13 +32,14 @@
 
   {% block container %}
     <div class="container-fluid">
-			{% if messages %}
-      <div class="alert alert-info">
-        {% for message in messages %}
-          {{message|safe}}
-        {% endfor %}
-      </div>
-			{% endif %}
+      {% if messages %}
+        <div class="alert alert-info">
+          {% for message in messages %}
+            {{message|safe}}
+          {% endfor %}
+        </div>
+      {% endif %}
+
       {% block container_top %}
       {% endblock %}
 
