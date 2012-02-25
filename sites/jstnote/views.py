@@ -54,7 +54,7 @@ def edit(request, pk):
         form = PasterForm(request.POST, instance=paster)
         if form.is_valid() and request.POST.get('submit', ''):
             form.save()
-            messages.info(request, u'密码不正确，删除失败')
+            messages.info(request, u'成功编辑')
             return HttpResponseRedirect(reverse("note_detail", args=[paster.pk]))
     ctx['form'] = form
     ctx['preview'] = preview
