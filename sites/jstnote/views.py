@@ -36,6 +36,8 @@ def new(request):
 def detail(request, pk):
     template_name = 'jstnote/detail.html'
     paster = get_object_or_404(Paster, pk=pk)
+    paster.num_views += 1
+    paster.save()
     ctx = {}
     ctx['paster'] = paster
     ctx['next'] = reverse("note_detail", args=[paster.pk])

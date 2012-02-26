@@ -38,7 +38,10 @@
             on <a href="{% url note_detail p.pk %}">{{p.created_on|date:"Y-m-d H:i" }}</a> |
             <a href="{% url note_detail p.pk %}"> <span class="icon-arrow-right"/></a>
             {% get_comment_count for p as comment_count %}
-            <div style="float:right">回复 <span>{{ comment_count }}</span> </div>
+            <div style="float:right">
+              浏览 <span>{{ p.num_views }}</span>
+              回复 <span>{{ comment_count }}</span> 
+            </div>
           </div>
           {{ p.body|slice:"140" }}{% if p.body|length > 140 %}...{% endif %} 
         </div>

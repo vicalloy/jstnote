@@ -29,7 +29,8 @@
     on <b>{{paster.created_on|date:"Y-m-d H:i" }}</b>
     <br/>
     {% get_comment_count for paster as comment_count %}
-    回复数 <b>{{ comment_count }}</b>
+    浏览 <b>{{ paster.num_views }}</b>
+    回复 <b>{{ comment_count }}</b>
   </div>
 
   <div class="">
