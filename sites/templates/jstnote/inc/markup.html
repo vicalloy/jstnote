@@ -6,7 +6,7 @@
 {% else %} {% if paster_markup == 'textile' %}
     {{paster_body|textile}}
 {% else %} {% if paster_markup == 'html' %}
-    {{paster_body|safe}}
+    {{paster_body|safe|removetags:"script"}}
 {% else %}
     {{paster_body|linebreaks}}
 {% endif %} {% endif %} {% endif %} {% endif %}
