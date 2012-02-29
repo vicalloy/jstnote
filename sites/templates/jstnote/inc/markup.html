@@ -2,7 +2,7 @@
 {% if paster_markup == 'rst' %}
     {{paster_body|restructuredtext}}
 {% else %} {% if paster_markup == 'md' %}
-    {{paster_body|markdown}}
+    {{paster_body|markdown:"safe"}}
 {% else %} {% if paster_markup == 'textile' %}
     {{paster_body|textile}}
 {% else %} {% if paster_markup == 'html' %}
